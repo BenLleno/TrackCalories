@@ -1,7 +1,6 @@
 import requests
 from requests_oauthlib import OAuth1
 
-# Load FatSecret API credentials from .env file
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -25,8 +24,7 @@ def search_food(query):
     response = requests.get(BASE_URL, params=params, auth=oauth)
     data = response.json()
     foods = data.get('foods', {}).get('food', [])
-    
-    # If only one food is returned, wrap it in a list
+
     if isinstance(foods, dict):
         foods = [foods]
     return foods
