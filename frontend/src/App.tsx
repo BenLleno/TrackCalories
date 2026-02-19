@@ -46,7 +46,6 @@ function App() {
   const round = (num: number): number =>
     Math.round(num * 10) / 10;
 
-  // search food
   const searchFood = async () => {
     if (!query.trim()) return;
 
@@ -63,7 +62,6 @@ function App() {
     setLoading(false);
   };
 
-  // get details
   const getDetails = async () => {
     if (!selectedFood) return;
 
@@ -78,7 +76,6 @@ function App() {
     setLoading(false);
   };
 
-  //ADD FOOD
   const addFood = () => {
     if (!selectedFood || !details) return;
 
@@ -121,15 +118,16 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex flex-col lg:flex-row items-center justify-center p-4 lg:p-6 gap-6">
+    <div className="min-h-screen bg-emerald-200 flex flex-col lg:flex-row items-center justify-center p-4 lg:p-6 gap-6">
 
       {/* totals */}
+    
       <div className="w-full max-w-xl mt-6 p-6 order-2 lg:order-1">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Macros for Today
         </h2>
 
-        <div className="bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl p-6 text-center mb-6 shadow-lg">
+        <div className="bg-emerald-500 text-white p-6 text-center mb-6 shadow-lg">
           <p className="uppercase text-sm tracking-wider opacity-90">
             Total Calories
           </p>
@@ -163,20 +161,20 @@ function App() {
 
                 <li
                   key={index}
-                  className="bg-gray-50 p-4 md:p-1 rounded-lg items-center relative md:grid md:grid-cols-[1.5fr_2.5fr_1.5fr_1.5fr_1fr_1.2fr_1fr] md:gap-2"
+                  className="bg-gray-50 p-4 md:p-1 items-center relative md:grid md:grid-cols-[1.5fr_2.5fr_1.5fr_1.5fr_1fr_1.2fr_1fr] md:gap-2"
                 >
                   <button
                     onClick={() => deleteFood(index)}
-                    className="absolute top-2 right-2 md:static md:ml-4 w-6 h-6 md:w-4 md:h-2 bg-red-100 text-red-500 md:bg-red-500 md:text-white rounded-full md:rounded-lg text-xs md:text-sm flex items-center justify-center hover:bg-red-200 md:hover:bg-red-600 transition-colors"
+                    className="absolute top-2 right-2 md:static md:ml-4 w-6 h-6 md:w-4 md:h-2 bg-red-100 text-red-500 md:bg-red-500 md:text-white text-xs md:text-sm flex items-center justify-center hover:bg-red-200 md:hover:bg-red-600 transition-colors"
                   >✕</button>
 
-                  {/* Mobile View Structure */}
+                  {/* mobile view */}
                   <div className="md:hidden">
                     <div className="font-bold text-lg text-gray-800 mb-1">{food.food_name}</div>
                     <div className="text-sm text-gray-500 mb-2">
                       {food.quantity} {food.unit === "serving" ? "serving(s)" : food.unit}
                     </div>
-                    <div className="flex gap-3 text-sm font-medium text-gray-600 bg-white p-2 rounded-md shadow-sm justify-between">
+                    <div className="flex gap-3 text-sm font-medium text-gray-600 bg-white p-2 shadow-sm justify-between">
                       <span>{food.calories.toFixed(0)} kcal</span>
                       <span className="text-yellow-600">{food.carbs.toFixed(0)}g C</span>
                       <span className="text-blue-600">{food.protein.toFixed(0)}g P</span>
@@ -184,7 +182,7 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Desktop View Structure */}
+                  {/* desktop view */}
                   <span className="hidden md:block font-semibold truncate">{food.food_name}</span>
                   <span className="hidden md:block font-semibold">{food.quantity} {food.unit === "serving" ? "ser." : food.unit && food.unit === "grams" ? "g" : food.unit}</span>
                   <span className="hidden md:block">{food.calories.toFixed(0)}<span className="font-semibold"> kcal</span></span>
@@ -200,9 +198,9 @@ function App() {
       </div>
 
       {/* main card */}
-      <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-6 md:p-10 order-1 lg:order-2">
+      <div className="w-full max-w-xl bg-white shadow-2xl p-6 md:p-10 order-1 lg:order-2">
         <div className="text-center mb-8">
-          <h1 className="bg-gradient-to-r from-blue-500 to-green-400 text-4xl font-bold text-white py-4 rounded-xl shadow-lg">
+          <h1 className="bg-emerald-500 text-4xl font-bold text-white py-4 shadow-lg">
             Gym Macros
           </h1>
           <p className="text-gray-500 mt-2">
@@ -222,7 +220,7 @@ function App() {
                 searchFood();
               }
             }}
-            className="flex-1 px-5 py-3 border rounded-xl"
+            className="flex-1 px-5 py-3 border"
           />
           <button
             onClick={searchFood}
@@ -259,7 +257,7 @@ function App() {
 
         {/* quantity */}
         {selectedFood && (
-          <div className="bg-gray-50 p-6 rounded-2xl mt-6 border">
+          <div className="bg-gray-50 p-6 mt-6 border">
             <h3 className="font-semibold text-lg mb-4">
               {selectedFood.food_name}
             </h3>
@@ -270,7 +268,7 @@ function App() {
                 min={0}
                 value={qty}
                 onChange={(e) => setQty(Number(e.target.value))}
-                className="w-28 px-4 py-2 border rounded-lg"
+                className="w-28 px-4 py-2 border"
               />
 
               <select
